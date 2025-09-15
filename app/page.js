@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Button from "./components/Button";
+import HomeAction from "./components/HomeActions";
 
 export default function Home() {
     return (
@@ -6,9 +8,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold text-blue-600">
                 Bienvenue sur TaskFlow 🚀
             </h1>
-            <p className="mt-4 text-lg text-gray-700">
-                Votre app Next.JS est prête !
-            </p>
+            <HomeAction />
         </main>
     );
 }
