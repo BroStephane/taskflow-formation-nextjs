@@ -63,7 +63,7 @@ export default function ProjectList() {
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {filteredPosts.map((post) => (
-                            <ProjectCard key={post.id} post={post} />
+                            <ProjectCard key={post.id}  post={post} />
                         ))}
                     </div>
                 )}
