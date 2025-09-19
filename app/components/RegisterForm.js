@@ -3,9 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordConfirmed, setPasswordConfirmed] = useState("");
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -17,12 +18,11 @@ export default function LoginForm() {
         setLoading(true);
 
         try {
-            const res = await fetch("/api/login", {
+            const res = await fetch("/api/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
-
             if (!res.ok) {
                 const data = await res.json();
                 setError(data.error || "Erreur inconnue");
@@ -58,6 +58,14 @@ export default function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            {/* <input
+                type="password-confirmed"
+                placeholder="Confirmé votre mot de passe"
+                className="border p-2 rounded"
+                value={passwordConfirmed}
+                onChange={(e) => setPasswordConfirmed(e.target.value)}
+                required
+            /> */}
 
             <button
                 type="submit"

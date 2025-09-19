@@ -11,6 +11,7 @@ export default function Navbar() {
         { href: "/about", label: "A propos" },
         { href: "/projects", label: "Projets" },
         { href: "/posts", label: "Posts" },
+        {href:"/register", label: "S'inscrire"}
     ];
 
     return (

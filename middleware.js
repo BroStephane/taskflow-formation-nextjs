@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import { jwtVerify } from "jose";
 
-const SECRET = process.env.JWT_SECRET;
+const SECRET = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function middleware(req) {
     const token = req.cookies.get("token")?.value;
@@ -11,13 +11,15 @@ export async function middleware(req) {
     }
 
     try {
-        jwt.verify(token, SECRET);
+        const { payload } = await jwtVerify(token, SECRET);
+        console.log("✅ Token valide :", payload);
         return NextResponse.next();
     } catch (err) {
+        console.log("❌ Token invalide :", err.message);
         return NextResponse.redirect(new URL("/login", req.url));
     }
 }
 
 export const config = {
-    matcher: ["/projects/:path*"], // protège /projects/*
+    matcher: ["/projects/:path*"],
 };
